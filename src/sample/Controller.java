@@ -1,11 +1,9 @@
 package sample;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import sample.datamodel.Note;
 import sample.datamodel.NoteData;
@@ -19,9 +17,17 @@ public class Controller {
     private BorderPane bpMain;
     @FXML
     private ComboBox<String> cbNotes;
+    @FXML
+    private TextArea taNoteText;
     private NoteData data;
 
 
+
+
+    public void initialize(){
+        data = new NoteData();
+        cbNotes.setOnAction(event -> updateNoteText());
+    }
 
     //Add item dialog opens when user clicks Add button beside CheckBox
     @FXML
@@ -50,8 +56,25 @@ public class Controller {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             AddNoteController addNoteController = fxmlLoader.getController();
             Note newNote = addNoteController.getNewNote();
-            cbNotes.getItems().add(newNote.getNoteName());
-            cbNotes.setValue(newNote.getNoteName());
+            data.addNote(cbNotes, newNote);
         }
+    }
+
+    //Gets typed text from Text Area and add it to existing Note item
+    @FXML
+    public void saveNoteText(){
+
+        Note currentNote = data.getNote(cbNotes.getValue());
+        String currentNoteText = taNoteText.getText();
+        currentNote.setNoteText(currentNoteText);
+
+    }
+
+    //Updates Text Area when Note Item is selected
+    @FXML
+    public void updateNoteText(){
+
+        String savedText = data.getNote(cbNotes.getValue()).getNoteText();
+        taNoteText.setText(savedText);
     }
 }

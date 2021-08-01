@@ -11,6 +11,7 @@ public class Note {
     public Note(String noteName){
 
         this.noteName.set(noteName);
+        this.noteText.set("");
     }
 
     public Note(){

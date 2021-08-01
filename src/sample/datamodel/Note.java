@@ -21,10 +21,6 @@ public class Note {
         return noteName.get();
     }
 
-    public SimpleStringProperty noteNameProperty() {
-        return noteName;
-    }
-
     public void setNoteName(String noteName) {
         this.noteName.set(noteName);
     }
@@ -33,13 +29,13 @@ public class Note {
         return noteText.get();
     }
 
-    public SimpleStringProperty noteTextProperty() {
-        return noteText;
-    }
-
     public void setNoteText(String noteText) {
         this.noteText.set(noteText);
     }
 
+    @Override
+    public String toString() {
+        return this.getNoteName();
+    }
 }
 

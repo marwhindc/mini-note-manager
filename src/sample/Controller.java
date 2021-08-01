@@ -16,7 +16,7 @@ public class Controller {
     @FXML
     private BorderPane bpMain;
     @FXML
-    private ComboBox<String> cbNotes;
+    private ComboBox<Note> cbNotes;
     @FXML
     private TextArea taNoteText;
     private NoteData data;
@@ -64,9 +64,7 @@ public class Controller {
     @FXML
     public void saveNoteText(){
 
-        Note currentNote = data.getNote(cbNotes.getValue());
-        String currentNoteText = taNoteText.getText();
-        currentNote.setNoteText(currentNoteText);
+        cbNotes.getSelectionModel().getSelectedItem().setNoteText(taNoteText.getText());
 
     }
 
@@ -74,7 +72,7 @@ public class Controller {
     @FXML
     public void updateNoteText(){
 
-        String savedText = data.getNote(cbNotes.getValue()).getNoteText();
+        String savedText = cbNotes.getSelectionModel().getSelectedItem().getNoteText();
         taNoteText.setText(savedText);
     }
 }

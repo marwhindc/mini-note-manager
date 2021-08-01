@@ -17,10 +17,10 @@ public class NoteData {
         return notes;
     }
 
-    public void addNote(ComboBox<String> comboBox, Note item){
+    public void addNote(ComboBox<Note> comboBox, Note item){
         notes.add(item);
-        comboBox.getItems().add(item.getNoteName());
-        comboBox.setValue(item.getNoteName());
+        comboBox.getItems().add(item);
+        comboBox.setValue(item);
 
     }
 
@@ -28,15 +28,15 @@ public class NoteData {
         notes.remove(item);
     }
 
-    public Note getNote(String name){
-
-
-        for (Note n : notes) {
-            if (n.getNoteName().equals(name)) {
-                return n;
-            }
-        }
-
-        return null;
-    }
+//    public Note getNote(Note item){
+//
+//
+//        for (Note n : notes) {
+//            if (n.equals(item)) {
+//                return n;
+//            }
+//        }
+//
+//        return null;
+//    }
 }

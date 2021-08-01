@@ -7,6 +7,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import sample.datamodel.Note;
+import sample.datamodel.NoteData;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -17,8 +19,8 @@ public class Controller {
     private BorderPane bpMain;
     @FXML
     private ComboBox<String> cbNotes;
-    @FXML
-    private TextField tfNewItem;
+    private NoteData data;
+
 
 
     //Add item dialog opens when user clicks Add button beside CheckBox
@@ -46,8 +48,10 @@ public class Controller {
 
         //Add entered item in dialog to ComboBox list
         if (result.isPresent() && result.get() == ButtonType.OK) {
-//            String newItem = tfNewItem.getText();
-//            cbNotes.getItems().add(newItem);
+            AddNoteController addNoteController = fxmlLoader.getController();
+            Note newNote = addNoteController.getNewNote();
+            cbNotes.getItems().add(newNote.getNoteName());
+            cbNotes.setValue(newNote.getNoteName());
         }
     }
 }

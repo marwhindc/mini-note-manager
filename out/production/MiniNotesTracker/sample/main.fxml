@@ -44,9 +44,6 @@
                <children>
                   <ComboBox fx:id="cbNotes" prefWidth="200.0">
                       <items>
-                          <FXCollections fx:factory="observableArrayList">
-                              <String fx:value="Add Item..." />
-                          </FXCollections>
                       </items>
                      <HBox.margin>
                         <Insets bottom="20.0" left="20.0" />

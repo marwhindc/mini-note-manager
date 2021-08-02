@@ -17,14 +17,14 @@ public class NoteData {
         return notes;
     }
 
-    public void addNote(ComboBox<Note> comboBox, Note item){
+    public void addNoteItem(ComboBox<Note> comboBox, Note item){
         notes.add(item);
         comboBox.getItems().add(item);
         comboBox.setValue(item);
 
     }
 
-    public void deleteNote(Note item){
+    public void deleteNoteItem(Note item){
         notes.remove(item);
     }
 

@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -56,7 +55,7 @@ public class Controller {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             AddNoteController addNoteController = fxmlLoader.getController();
             Note newNote = addNoteController.getNewNote();
-            data.addNote(cbNotes, newNote);
+            data.addNoteItem(cbNotes, newNote);
         }
     }
 

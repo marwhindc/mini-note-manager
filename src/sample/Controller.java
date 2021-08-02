@@ -3,6 +3,8 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.BorderPane;
 import sample.datamodel.Note;
 import sample.datamodel.NoteData;
@@ -101,4 +103,13 @@ public class Controller {
 
     }
 
+    //Copies text for current Combobox value for easy use
+    @FXML
+    public void copyNoteItem(){
+
+        Clipboard clipboard = Clipboard.getSystemClipboard();
+        ClipboardContent content = new ClipboardContent();
+        content.putString(cbNotes.getSelectionModel().getSelectedItem().getNoteName());
+        clipboard.setContent(content);
+    }
 }

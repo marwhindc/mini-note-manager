@@ -28,6 +28,10 @@ public class Controller {
     public void initialize(){
         data = new NoteData();
         cbNotes.setOnAction(event -> updateNoteText());
+
+        if (cbNotes.getValue() == null) {
+            taNoteText.setDisable(true);
+        } else taNoteText.setDisable(false);
     }
 
     //Add item dialog opens when user clicks Add button beside CheckBox
@@ -58,6 +62,9 @@ public class Controller {
             AddNoteController addNoteController = fxmlLoader.getController();
             Note newNote = addNoteController.getNewNote();
             data.addNoteItem(cbNotes, newNote);
+            if (taNoteText.isDisabled()) {
+                taNoteText.setDisable(false);
+            }
         }
     }
 

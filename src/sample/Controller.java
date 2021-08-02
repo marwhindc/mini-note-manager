@@ -71,7 +71,34 @@ public class Controller {
     @FXML
     public void updateNoteText(){
 
-        String savedText = cbNotes.getSelectionModel().getSelectedItem().getNoteText();
-        taNoteText.setText(savedText);
+        //try-catch to check for deleted item if it's the first item
+        try {
+            if (cbNotes.getItems().size() > 0) {
+                String savedText = cbNotes.getSelectionModel().getSelectedItem().getNoteText();
+                taNoteText.setText(savedText);
+            } else taNoteText.clear();
+        } catch (NullPointerException e) {
+            return;
+        }
+
+
+
     }
+
+    //Remove Combobox item when delete button is pressed
+    @FXML
+    public void removeNoteItem(){
+
+        Note currentNote = cbNotes.getSelectionModel().getSelectedItem();
+        data.deleteNoteItem(cbNotes,currentNote);
+
+        //WIP - setting the index to zero every time an item is deleted
+        //Issue - when first item is deleted, it doesn't setValue to next item
+        if (cbNotes.getItems().size() > 0) {
+        cbNotes.setValue(cbNotes.getItems().get(0));
+        updateNoteText();
+        }
+
+    }
+
 }

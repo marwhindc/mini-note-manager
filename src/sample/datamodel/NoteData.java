@@ -24,8 +24,9 @@ public class NoteData {
 
     }
 
-    public void deleteNoteItem(Note item){
+    public void deleteNoteItem(ComboBox<Note> comboBox, Note item){
         notes.remove(item);
+        comboBox.getItems().remove(item);
     }
 
 //    public Note getNote(Note item){

@@ -27,11 +27,21 @@ public class Controller {
 
     public void initialize(){
         data = new NoteData();
+        data.loadNotes();
+        cbNotes.setItems(data.getNotes());
+
+        if (cbNotes.getItems().size() > 0) {
+            cbNotes.setValue(cbNotes.getItems().get(0));
+            updateNoteText();
+        }
+
         cbNotes.setOnAction(event -> updateNoteText());
 
         if (cbNotes.getValue() == null) {
             taNoteText.setDisable(true);
-        } else taNoteText.setDisable(false);
+        } else {
+            taNoteText.setDisable(false);
+        }
     }
 
     //Add item dialog opens when user clicks Add button beside CheckBox
@@ -62,9 +72,12 @@ public class Controller {
             AddNoteController addNoteController = fxmlLoader.getController();
             Note newNote = addNoteController.getNewNote();
             data.addNoteItem(cbNotes, newNote);
+            data.saveNotes();
+            System.out.println(cbNotes.getItems().size());
             if (taNoteText.isDisabled()) {
                 taNoteText.setDisable(false);
             }
+
         }
     }
 
@@ -73,7 +86,7 @@ public class Controller {
     public void saveNoteText(){
 
         cbNotes.getSelectionModel().getSelectedItem().setNoteText(taNoteText.getText());
-
+        data.saveNotes();
     }
 
     //Updates Text Area when Note Item is selected
@@ -106,8 +119,8 @@ public class Controller {
         if (cbNotes.getItems().size() > 0) {
         cbNotes.setValue(cbNotes.getItems().get(0));
         updateNoteText();
-        }
-
+        } else taNoteText.setDisable(true);
+        data.saveNotes();
     }
 
     //Copies text for current Combobox value for easy use

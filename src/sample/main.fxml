@@ -7,25 +7,25 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="bpMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<BorderPane fx:id="bpMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="275.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <top>
-      <VBox prefHeight="81.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="80.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
             <MenuBar>
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                        <MenuItem mnemonicParsing="false" onAction="#showAddItemDialog" text="Add Item" />
+                    <MenuItem mnemonicParsing="false" onAction="#removeNoteItem" text="Delete Item" />
+                        <MenuItem mnemonicParsing="false" onAction="#saveNoteText" text="Save Note" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
@@ -47,20 +47,41 @@
                         <Insets bottom="20.0" left="20.0" />
                      </HBox.margin>
                   </ComboBox>
-                  <Button fx:id="btAddNote" mnemonicParsing="false" onAction="#showAddItemDialog" text="Add">
+                  <Button fx:id="btAddNote" mnemonicParsing="false" onAction="#showAddItemDialog">
                      <HBox.margin>
-                        <Insets left="20.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/toolbarButtonGraphics/general/Add16.gif" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button fx:id="btDeleteNote" mnemonicParsing="false" onAction="#removeNoteItem" text="Delete">
+                  <Button fx:id="btDeleteNote" mnemonicParsing="false" onAction="#removeNoteItem">
                      <HBox.margin>
-                        <Insets left="20.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/toolbarButtonGraphics/general/Delete16.gif" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button fx:id="btCopyNoteName" mnemonicParsing="false" onAction="#copyNoteItem" text="Copy">
+                  <Button fx:id="btCopyNoteName" mnemonicParsing="false" onAction="#copyNoteItem">
                      <HBox.margin>
-                        <Insets left="20.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/toolbarButtonGraphics/general/Copy16.gif" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </HBox>
@@ -71,7 +92,7 @@
       </VBox>
    </top>
    <center>
-      <TextArea fx:id="taNoteText" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TextArea fx:id="taNoteText" prefHeight="200.0" prefWidth="200.0" wrapText="true" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="20.0" left="20.0" />
          </BorderPane.margin>
@@ -81,12 +102,19 @@
       </TextArea>
    </center>
    <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="50.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btSaveNote" mnemonicParsing="false" onAction="#saveNoteText" text="Save">
+            <Button fx:id="btSaveNote" mnemonicParsing="false" onAction="#saveNoteText">
                <VBox.margin>
-                  <Insets left="20.0" />
+                  <Insets left="10.0" />
                </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/toolbarButtonGraphics/general/Save16.gif" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
          <BorderPane.margin>

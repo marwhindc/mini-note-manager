@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -21,7 +22,12 @@ public class Controller {
     @FXML
     private TextArea taNoteText;
     private NoteData data;
-
+    @FXML
+    private Button btDeleteNote;
+    @FXML
+    private Button btCopyNoteName;
+    @FXML
+    private Button btSaveNote;
 
 
 
@@ -38,10 +44,9 @@ public class Controller {
         cbNotes.setOnAction(event -> updateNoteText());
 
         if (cbNotes.getValue() == null) {
-            taNoteText.setDisable(true);
-        } else {
-            taNoteText.setDisable(false);
-        }
+            handleButtonProperty(true);
+        } else taNoteText.setDisable(false);
+
     }
 
     //Add item dialog opens when user clicks Add button beside CheckBox
@@ -73,9 +78,8 @@ public class Controller {
             Note newNote = addNoteController.getNewNote();
             data.addNoteItem(cbNotes, newNote);
             data.saveNotes();
-            System.out.println(cbNotes.getItems().size());
             if (taNoteText.isDisabled()) {
-                taNoteText.setDisable(false);
+                handleButtonProperty(false);
             }
 
         }
@@ -119,7 +123,9 @@ public class Controller {
         if (cbNotes.getItems().size() > 0) {
         cbNotes.setValue(cbNotes.getItems().get(0));
         updateNoteText();
-        } else taNoteText.setDisable(true);
+        } else {
+            handleButtonProperty(true);
+        }
         data.saveNotes();
     }
 
@@ -131,5 +137,21 @@ public class Controller {
         ClipboardContent content = new ClipboardContent();
         content.putString(cbNotes.getSelectionModel().getSelectedItem().getNoteName());
         clipboard.setContent(content);
+    }
+
+    @FXML
+    public void handleExit(){
+
+        Platform.exit();
+    }
+
+    //Handles logic for when buttons need to be enabled or disabled for UX purposes
+    @FXML
+    private void handleButtonProperty(boolean isDisabled){
+
+        taNoteText.setDisable(isDisabled);
+        btDeleteNote.setDisable(isDisabled);
+        btCopyNoteName.setDisable(isDisabled);
+        btSaveNote.setDisable(isDisabled);
     }
 }

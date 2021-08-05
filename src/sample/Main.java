@@ -11,8 +11,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
-        primaryStage.setTitle("Mini Notes Tracker");
+        primaryStage.setTitle("Mini Note Manager");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setMinHeight(325);
+        primaryStage.setMinWidth(425);
         primaryStage.show();
     }
 

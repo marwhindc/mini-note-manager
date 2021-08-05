@@ -1,3 +1,3 @@
-# Mini Notes Tracker
+# Mini Note Manager
 
-## A Notepad like app that lets you save and switch on multiple notes in one screen
+## A note manager app that lets you save. manager and switch on multiple notes in one screen

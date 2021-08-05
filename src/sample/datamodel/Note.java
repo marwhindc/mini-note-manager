@@ -11,7 +11,7 @@ public class Note {
     public Note(String noteName){
 
         this.noteName.set(noteName);
-        this.noteText.set("");
+        this.noteText.set("Type your notes here...");
     }
 
     public Note(){

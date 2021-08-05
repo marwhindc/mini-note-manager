@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MiniNotesTracker.iml" filepath="$PROJECT_DIR$/MiniNotesTracker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MiniNoteManager.iml" filepath="$PROJECT_DIR$/MiniNoteManager.iml" />
     </modules>
   </component>
 </project>

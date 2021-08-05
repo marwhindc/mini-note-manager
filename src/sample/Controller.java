@@ -89,7 +89,10 @@ public class Controller {
     @FXML
     public void saveNoteText(){
 
-        cbNotes.getSelectionModel().getSelectedItem().setNoteText(taNoteText.getText());
+        String noteText = taNoteText.getText();
+        if (noteText.isEmpty()) {
+            cbNotes.getSelectionModel().getSelectedItem().setNoteText("Type your notes here...");
+        } else cbNotes.getSelectionModel().getSelectedItem().setNoteText(noteText);
         data.saveNotes();
     }
 

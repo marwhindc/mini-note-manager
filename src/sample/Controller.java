@@ -76,12 +76,14 @@ public class Controller {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             AddNoteController addNoteController = fxmlLoader.getController();
             Note newNote = addNoteController.getNewNote();
-            data.addNoteItem(cbNotes, newNote);
-            data.saveNotes();
-            if (taNoteText.isDisabled()) {
-                handleButtonProperty(false);
-            }
 
+            if (newNote != null) {
+                data.addNoteItem(cbNotes, newNote);
+                data.saveNotes();
+                if (taNoteText.isDisabled()) {
+                    handleButtonProperty(false);
+                }
+            }
         }
     }
 
@@ -119,7 +121,15 @@ public class Controller {
     public void removeNoteItem(){
 
         Note currentNote = cbNotes.getSelectionModel().getSelectedItem();
-        data.deleteNoteItem(cbNotes,currentNote);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Note");
+        alert.setHeaderText("Deleting '" + currentNote.getNoteName() + "'");
+        alert.setContentText("Are you sure?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            data.deleteNoteItem(cbNotes,currentNote);
+        }
 
         //WIP - setting the index to zero every time an item is deleted
         //Issue - when first item is deleted, it doesn't setValue to next item

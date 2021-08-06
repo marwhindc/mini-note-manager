@@ -22,9 +22,9 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                        <MenuItem mnemonicParsing="false" onAction="#showAddItemDialog" text="Add Item" />
-                    <MenuItem mnemonicParsing="false" onAction="#removeNoteItem" text="Delete Item" />
-                        <MenuItem mnemonicParsing="false" onAction="#saveNoteText" text="Save Note" />
+                        <MenuItem fx:id="miAdd" mnemonicParsing="false" onAction="#showAddItemDialog" text="Add Item" />
+                    <MenuItem fx:id="miDelete" mnemonicParsing="false" onAction="#removeNoteItem" text="Delete Item" />
+                        <MenuItem fx:id="miSave" mnemonicParsing="false" onAction="#saveNoteText" text="Save Note" />
                         <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
                   </items>
                 </Menu>
@@ -83,6 +83,18 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Button fx:id="btSaveNote" mnemonicParsing="false" onAction="#saveNoteText">
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/toolbarButtonGraphics/general/Save16.gif" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
          </children>
@@ -94,32 +106,11 @@
    <center>
       <TextArea fx:id="taNoteText" prefHeight="200.0" prefWidth="200.0" wrapText="true" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="20.0" left="20.0" />
+            <Insets />
          </BorderPane.margin>
          <font>
             <Font name="Consolas" size="12.0" />
          </font>
       </TextArea>
    </center>
-   <right>
-      <VBox prefHeight="200.0" prefWidth="50.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="btSaveNote" mnemonicParsing="false" onAction="#saveNoteText">
-               <VBox.margin>
-                  <Insets left="10.0" />
-               </VBox.margin>
-               <graphic>
-                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@/toolbarButtonGraphics/general/Save16.gif" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </VBox>
-   </right>
 </BorderPane>

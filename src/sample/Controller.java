@@ -28,6 +28,10 @@ public class Controller {
     private Button btCopyNoteName;
     @FXML
     private Button btSaveNote;
+    @FXML
+    private MenuItem miSave;
+    @FXML
+    private MenuItem miDelete;
 
 
 
@@ -166,5 +170,7 @@ public class Controller {
         btDeleteNote.setDisable(isDisabled);
         btCopyNoteName.setDisable(isDisabled);
         btSaveNote.setDisable(isDisabled);
+        miDelete.setDisable(isDisabled);
+        miSave.setDisable(isDisabled);
     }
 }

@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -59,6 +60,9 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <tooltip>
+                        <Tooltip text="Add new item" />
+                     </tooltip>
                   </Button>
                   <Button fx:id="btDeleteNote" mnemonicParsing="false" onAction="#removeNoteItem">
                      <HBox.margin>
@@ -71,6 +75,9 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <tooltip>
+                        <Tooltip text="Delete item" />
+                     </tooltip>
                   </Button>
                   <Button fx:id="btCopyNoteName" mnemonicParsing="false" onAction="#copyNoteItem">
                      <HBox.margin>
@@ -83,6 +90,9 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <tooltip>
+                        <Tooltip text="Copy item name" />
+                     </tooltip>
                   </Button>
                   <Button fx:id="btSaveNote" mnemonicParsing="false" onAction="#saveNoteText">
                      <graphic>
@@ -95,6 +105,9 @@
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
+                     <tooltip>
+                        <Tooltip text="Save item text" />
+                     </tooltip>
                   </Button>
                </children>
             </HBox>

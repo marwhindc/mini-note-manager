@@ -11,6 +11,9 @@ import sample.datamodel.Note;
 import sample.datamodel.NoteData;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 public class Controller {
@@ -32,6 +35,8 @@ public class Controller {
     private MenuItem miSave;
     @FXML
     private MenuItem miDelete;
+    @FXML
+    private Label lbLastSaved;
 
 
 
@@ -95,10 +100,14 @@ public class Controller {
     @FXML
     public void saveNoteText(){
 
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
         String noteText = taNoteText.getText();
+
         if (noteText.isEmpty()) {
             cbNotes.getSelectionModel().getSelectedItem().setNoteText("Type your notes here...");
         } else cbNotes.getSelectionModel().getSelectedItem().setNoteText(noteText);
+        lbLastSaved.setText("Last saved: " + dtf.format(now));
         data.saveNotes();
     }
 

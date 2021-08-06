@@ -115,6 +115,6 @@
       </TextArea>
    </center>
    <bottom>
-      <Label BorderPane.alignment="CENTER_LEFT" />
+      <Label fx:id="lbLastSaved" BorderPane.alignment="CENTER_LEFT" />
    </bottom>
 </BorderPane>

@@ -4,6 +4,7 @@ import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -12,8 +13,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 import sample.datamodel.Note;
@@ -27,6 +27,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
+
+import static javafx.scene.input.KeyCombination.*;
 
 public class Controller {
 
@@ -48,23 +50,29 @@ public class Controller {
     @FXML
     private MenuItem miDelete;
     @FXML
+    private MenuItem miAdd;
+    @FXML
     private Label lbLastSaved;
     PauseTransition hideLabel;
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss MM/dd/yyyy");
     LocalDateTime now = LocalDateTime.now();
 
+    @FXML
     public void initialize(){
         data = new NoteData();
         data.loadNotes();
         cbNotes.setItems(data.getNotes());
 
+        //Populate Combobox with items from load
         if (cbNotes.getItems().size() > 0) {
             cbNotes.setValue(cbNotes.getItems().get(0));
             updateNoteText();
         }
 
-
+        // Updates text area when new item is selected
         cbNotes.setOnAction(event -> updateNoteText());
+
+        //Checks if changes were made to text are. Will tell user if not yet saved.
         taNoteText.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(final ObservableValue<? extends String> observable, final String oldValue, final String newValue) {
@@ -75,6 +83,7 @@ public class Controller {
                         lbLastSaved.setText("Changes not yet saved");
                     } else lbLastSaved.setVisible(false);
                 } catch (NullPointerException e) {
+                    return;
                 }
             }
         });
@@ -83,12 +92,18 @@ public class Controller {
             handleButtonProperty(true);
         } else taNoteText.setDisable(false);
 
+        //Event handler for Label
         hideLabel = new PauseTransition(
                 Duration.seconds(5)
         );
         hideLabel.setOnFinished(
                 event -> lbLastSaved.setVisible(false)
         );
+
+        //Keyboard shortcuts
+       miSave.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
+       miDelete.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
+       miAdd.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+A"));
     }
 
     //Add item dialog opens when user clicks Add button beside CheckBox
@@ -185,6 +200,7 @@ public class Controller {
         } else {
             handleButtonProperty(true);
         }
+        lbLastSaved.setVisible(false);
         data.saveNotes();
     }
 

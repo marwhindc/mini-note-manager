@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -15,6 +16,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.setMinHeight(325);
         primaryStage.setMinWidth(425);
+        primaryStage.getIcons().add(new Image("mini-notepad-icon.png"));
         primaryStage.show();
     }
 

@@ -1,16 +1,28 @@
 package sample;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.BorderPane;
+import javafx.util.Duration;
 import sample.datamodel.Note;
 import sample.datamodel.NoteData;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -37,8 +49,9 @@ public class Controller {
     private MenuItem miDelete;
     @FXML
     private Label lbLastSaved;
-
-
+    PauseTransition hideLabel;
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss MM/dd/yyyy");
+    LocalDateTime now = LocalDateTime.now();
 
     public void initialize(){
         data = new NoteData();
@@ -50,12 +63,32 @@ public class Controller {
             updateNoteText();
         }
 
+
         cbNotes.setOnAction(event -> updateNoteText());
+        taNoteText.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(final ObservableValue<? extends String> observable, final String oldValue, final String newValue) {
+
+                try {
+                    if (!cbNotes.getSelectionModel().getSelectedItem().getNoteText().equals(newValue)) {
+                        lbLastSaved.setVisible(true);
+                        lbLastSaved.setText("Changes not yet saved");
+                    } else lbLastSaved.setVisible(false);
+                } catch (NullPointerException e) {
+                }
+            }
+        });
 
         if (cbNotes.getValue() == null) {
             handleButtonProperty(true);
         } else taNoteText.setDisable(false);
 
+        hideLabel = new PauseTransition(
+                Duration.seconds(5)
+        );
+        hideLabel.setOnFinished(
+                event -> lbLastSaved.setVisible(false)
+        );
     }
 
     //Add item dialog opens when user clicks Add button beside CheckBox
@@ -99,15 +132,15 @@ public class Controller {
     //Gets typed text from Text Area and add it to existing Note item
     @FXML
     public void saveNoteText(){
-
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
+        Note currentNote = cbNotes.getSelectionModel().getSelectedItem();
         String noteText = taNoteText.getText();
 
         if (noteText.isEmpty()) {
-            cbNotes.getSelectionModel().getSelectedItem().setNoteText("Type your notes here...");
-        } else cbNotes.getSelectionModel().getSelectedItem().setNoteText(noteText);
+            currentNote.setNoteText("Type your notes here...");
+        } else currentNote.setNoteText(noteText);
+        lbLastSaved.setVisible(true);
         lbLastSaved.setText("Last saved: " + dtf.format(now));
+        hideLabel.play();
         data.saveNotes();
     }
 
@@ -169,6 +202,12 @@ public class Controller {
     public void handleExit(){
 
         Platform.exit();
+    }
+
+    @FXML
+    public void handleAbout() throws URISyntaxException, IOException {
+
+        Desktop.getDesktop().browse(new URI("https://github.com/marwhindc/mini-note-manager"));
     }
 
     //Handles logic for when buttons need to be enabled or disabled for UX purposes

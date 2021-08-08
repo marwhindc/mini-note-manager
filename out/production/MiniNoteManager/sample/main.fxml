@@ -56,7 +56,7 @@
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@/toolbarButtonGraphics/general/Add16.gif" />
+                              <Image url="Add16.gif" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -71,7 +71,7 @@
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@/toolbarButtonGraphics/general/Delete16.gif" />
+                              <Image url="Delete16.gif" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -86,7 +86,7 @@
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@/toolbarButtonGraphics/general/Copy16.gif" />
+                              <Image url="Copy16.gif" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -98,7 +98,7 @@
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@/toolbarButtonGraphics/general/Save16.gif" />
+                              <Image url="Save16.gif" />
                            </image>
                         </ImageView>
                      </graphic>

@@ -18,6 +18,8 @@ public class AddNoteController {
 
         String noteName = tfNewItem.getText();
         if (noteName.isEmpty() || noteName.trim().isEmpty()) {
+
+            //Shows Alert when new Note Item name is empty
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Adding Note");
             alert.setHeaderText("Error");

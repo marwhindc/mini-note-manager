@@ -22,7 +22,7 @@
          <children>
             <MenuBar>
               <menus>
-                <Menu mnemonicParsing="false" text="File">
+                <Menu fx:id="miFile" mnemonicParsing="false" text="File">
                   <items>
                         <MenuItem fx:id="miAdd" mnemonicParsing="false" onAction="#showAddItemDialog" text="Add Item" />
                     <MenuItem fx:id="miDelete" mnemonicParsing="false" onAction="#removeNoteItem" text="Delete Item" />
@@ -30,7 +30,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
+                <Menu fx:id="miHelp" mnemonicParsing="false" text="Help">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="About" />
                   </items>

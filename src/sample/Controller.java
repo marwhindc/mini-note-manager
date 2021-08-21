@@ -4,16 +4,17 @@ import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.*;
+import javafx.scene.control.*;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 import sample.datamodel.Note;
@@ -23,12 +24,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
-
-import static javafx.scene.input.KeyCombination.*;
 
 public class Controller {
 
@@ -101,9 +99,9 @@ public class Controller {
         );
 
         //Keyboard shortcuts
-       miSave.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
-       miDelete.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
-       miAdd.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+A"));
+        miSave.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
+        miDelete.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
+        miAdd.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+A"));
     }
 
     //Add item dialog opens when user clicks Add button beside CheckBox

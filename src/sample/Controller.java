@@ -59,9 +59,9 @@ public class Controller {
     public void initialize(){
         data = new NoteData();
         data.loadNotes();
-        cbNotes.setItems(data.getNotes());
 
         //Populate Combobox with items from load
+        cbNotes.setItems(data.getNotes());
         if (cbNotes.getItems().size() > 0) {
             cbNotes.setValue(cbNotes.getItems().get(0));
             updateNoteText();
@@ -104,7 +104,7 @@ public class Controller {
         miAdd.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+A"));
     }
 
-    //Add item dialog opens when user clicks Add button beside CheckBox
+    //Add Item dialog opens when user clicks "Add" button
     @FXML
     public void showAddItemDialog() {
 
@@ -142,7 +142,7 @@ public class Controller {
         }
     }
 
-    //Gets typed text from Text Area and add it to existing Note item
+    //Gets String value from TextArea and saves it to existing Note item
     @FXML
     public void saveNoteText(){
         Note currentNote = cbNotes.getSelectionModel().getSelectedItem();
@@ -151,13 +151,14 @@ public class Controller {
         if (noteText.isEmpty()) {
             currentNote.setNoteText("Type your notes here...");
         } else currentNote.setNoteText(noteText);
+
         lbLastSaved.setVisible(true);
         lbLastSaved.setText("Last saved: " + dtf.format(now));
         hideLabel.play();
         data.saveNotes();
     }
 
-    //Updates Text Area when Note Item is selected
+    //Updates TextArea when a Combobox Item is selected
     @FXML
     public void updateNoteText(){
 
@@ -175,12 +176,14 @@ public class Controller {
 
     }
 
-    //Remove Combobox item when delete button is pressed
+    //Delete Combobox Item when "Delete" button is clicked
     @FXML
     public void removeNoteItem(){
 
         Note currentNote = cbNotes.getSelectionModel().getSelectedItem();
 
+
+        //Shows alert when user attempts to delete an item
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Note");
         alert.setHeaderText("Deleting '" + currentNote.getNoteName() + "'");
@@ -202,7 +205,7 @@ public class Controller {
         data.saveNotes();
     }
 
-    //Copies text for current Combobox value for easy use
+    //Copies name of current Combobox Item
     @FXML
     public void copyNoteItem(){
 
@@ -218,13 +221,14 @@ public class Controller {
         Platform.exit();
     }
 
+    //Visits Github page when "About" Menu Item is clicked
     @FXML
     public void handleAbout() throws URISyntaxException, IOException {
 
         Desktop.getDesktop().browse(new URI("https://github.com/marwhindc/mini-note-manager"));
     }
 
-    //Handles logic for when buttons need to be enabled or disabled for UX purposes
+    //Handles button state to avoid exceptions
     @FXML
     private void handleButtonProperty(boolean isDisabled){
 

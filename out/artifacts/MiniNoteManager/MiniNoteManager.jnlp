@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="MiniNoteManager.jar" size="30417" download="eager" />
+    <jar href="MiniNoteManager.jar" size="30438" download="eager" />
     <jar href="javafx-swt.jar" size="36811" download="eager" />
     <jar href="javafx.base.jar" size="749889" download="eager" />
     <jar href="javafx.controls.jar" size="2511137" download="eager" />
@@ -18,6 +18,9 @@
     <jar href="javafx.swing.jar" size="119848" download="eager" />
     <jar href="javafx.web.jar" size="714741" download="eager" />
   </resources>
+<security>
+  <all-permissions/>
+</security>
   <jfx:javafx-desc  width="600" height="400" main-class="sample.Main"  name="MiniNoteManager" />
   <update check="background"/>
 </jnlp>

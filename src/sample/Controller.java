@@ -53,9 +53,9 @@ public class Controller {
     private MenuItem miAdd;
     @FXML
     private Label lbLastSaved;
-    PauseTransition hideLabel;
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss MM/dd/yyyy");
-    LocalDateTime now = LocalDateTime.now();
+    private PauseTransition hideLabel;
+    private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss MM/dd/yyyy");
+    private final LocalDateTime now = LocalDateTime.now();
 
     @FXML
     public void initialize(){

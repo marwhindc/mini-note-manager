@@ -8,7 +8,7 @@ A note manager app that lets you save, manage and switch on multiple notes in on
 
 ## Download
 
-You can download the .exe file by clicking this [link](https://github.com/marwhindc/mini-note-manager/releases/download/v1.0.0/MiniNoteManager.exe).
+You can download the .zip file by clicking this [link](https://github.com/marwhindc/mini-note-manager/releases/download/v1.0.0/MiniNoteManager.zip)(includes JRE).
 
 ## Future Features
 
